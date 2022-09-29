@@ -36,6 +36,18 @@ import org.springframework.web.context.request.WebRequest;
 			return new ResponseEntity<>(plantError,HttpStatus.BAD_REQUEST);
 		}
 		
+		@ExceptionHandler(PlanterException.class)
+		public ResponseEntity<MyCustomError> planterExceptionHandler(PlanterException ee,WebRequest wrq){
+			
+			System.out.println("inside PlantException method...");
+			MyCustomError planterError = new MyCustomError();
+			planterError.setLdt(LocalDateTime.now());
+			planterError.setMessage(ee.getMessage());
+			planterError.setDetails(wrq.getDescription(false));
+			
+			return new ResponseEntity<>(planterError,HttpStatus.BAD_REQUEST);
+		}
+		
 		@ExceptionHandler(MethodArgumentNotValidException.class)
 		public ResponseEntity<MyCustomError> validatorHandler(MethodArgumentNotValidException ie) {
 		
