@@ -2,10 +2,8 @@ package com.masai.ServiceLayerImplementations;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.masai.Exceptions.PlanterException;
 import com.masai.Repository.PlanterDAO;
 import com.masai.ServiceLayer.PlanterService;
@@ -77,7 +75,7 @@ public class PlanterServiceImpl implements PlanterService {
 	
 		List<Planter> allPlantersByPlanterShape;
 		
-		allPlantersByPlanterShape = planterDAO.findByPlantershape(planterShape);
+		allPlantersByPlanterShape = planterDAO.findByPlanterShape(planterShape);
 		
 		if(allPlantersByPlanterShape.size()!=0)
 		return allPlantersByPlanterShape;
