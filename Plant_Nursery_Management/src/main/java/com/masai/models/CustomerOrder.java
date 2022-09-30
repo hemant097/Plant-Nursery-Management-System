@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer bookingOrderId;

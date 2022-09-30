@@ -1,6 +1,7 @@
 package com.masai.models;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class Cart {
 	private Integer cartId;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Order> items=new ArrayList<>();
+	private List<CustomerOrder> items=new ArrayList<>();
 
 	private Double cartTotal;
     

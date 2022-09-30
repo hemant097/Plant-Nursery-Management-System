@@ -1,9 +1,7 @@
 package com.masai.ServiceLayer;
-
 import java.util.List;
 import com.masai.models.Cart;
 import com.masai.models.Customer;
-import com.masai.models.Order;
 
 
 public interface CartService {

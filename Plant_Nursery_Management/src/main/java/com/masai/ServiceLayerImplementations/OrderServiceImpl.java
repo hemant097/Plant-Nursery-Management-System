@@ -2,14 +2,13 @@ package com.masai.ServiceLayerImplementations;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import com.masai.Exceptions.OrderException;
 import com.masai.Repository.OrderDao;
 import com.masai.ServiceLayer.OrderService;
-import com.masai.models.Order;
+import com.masai.models.CustomerOrder;
+
 @Controller
 public class OrderServiceImpl implements OrderService{
 	
@@ -17,9 +16,9 @@ public class OrderServiceImpl implements OrderService{
 	private OrderDao orderDao;
 
 	@Override
-	public Order addOrder(Order order) throws OrderException {
+	public CustomerOrder addOrder(CustomerOrder order) throws OrderException {
 		
-	Order savedOrder=orderDao.save(order);
+		CustomerOrder savedOrder=orderDao.save(order);
 	if(savedOrder!=null) {
 		return savedOrder;
 	}
@@ -31,9 +30,9 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Order updateOrder(Order order) throws OrderException {
+	public CustomerOrder updateOrder(CustomerOrder order) throws OrderException {
 		
-		Optional<Order> updateorder=orderDao.findById(order.getBookingOrderId());
+		Optional<CustomerOrder> updateorder=orderDao.findById(order.getBookingOrderId());
 		
 		if(updateorder.isPresent()) {
 			return orderDao.save(order);
@@ -45,17 +44,17 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Order deleteOrderById(Integer orderId) throws OrderException {
+	public CustomerOrder deleteOrderById(Integer orderId) throws OrderException {
 		
-		Order exsistingOrder=orderDao.findById(orderId).orElseThrow(() -> new OrderException("Order is not listed"+orderId));
+		CustomerOrder exsistingOrder=orderDao.findById(orderId).orElseThrow(() -> new OrderException("Order is not listed"+orderId));
 		
 		orderDao.delete(exsistingOrder);
 		return exsistingOrder;
 	}
 
 	@Override
-	public Order viewOrder(Integer orderId) throws OrderException {
-		Optional<Order> vieworder =orderDao.findById(orderId);
+	public CustomerOrder viewOrder(Integer orderId) throws OrderException {
+		Optional<CustomerOrder> vieworder =orderDao.findById(orderId);
 		if(vieworder.isPresent()) {
 			return vieworder.get();
 		}
@@ -66,8 +65,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> viewAllOrders() throws OrderException {
-		List<Order> orders=orderDao.findAll();
+	public List<CustomerOrder> viewAllOrders() throws OrderException {
+		List<CustomerOrder> orders=orderDao.findAll();
 		if(orders.size()>0) {
 			return orders;
 		}
