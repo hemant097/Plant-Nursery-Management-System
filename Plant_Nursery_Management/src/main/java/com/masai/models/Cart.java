@@ -34,12 +34,13 @@ public class Cart {
 
 	private Double cartTotal;
     
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Seed> seeds = new ArrayList<>();
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Plant> plants = new ArrayList<>();
 	
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Planter> planters = new ArrayList<>();
 	
 	private Integer noOfItems;

@@ -2,12 +2,12 @@ package com.masai.models;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +25,8 @@ public class Order {
 	private String transactionMode;
 	private Integer quantity;
 	private Double totalCost;
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Planter> planters;
 
 }

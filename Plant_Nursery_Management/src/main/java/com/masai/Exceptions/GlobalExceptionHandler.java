@@ -39,7 +39,7 @@ import org.springframework.web.context.request.WebRequest;
 		@ExceptionHandler(PlanterException.class)
 		public ResponseEntity<MyCustomError> planterExceptionHandler(PlanterException ee,WebRequest wrq){
 			
-			System.out.println("inside PlantException method...");
+			System.out.println("inside PlanterException method...");
 			MyCustomError planterError = new MyCustomError();
 			planterError.setLdt(LocalDateTime.now());
 			planterError.setMessage(ee.getMessage());
@@ -47,6 +47,19 @@ import org.springframework.web.context.request.WebRequest;
 			
 			return new ResponseEntity<>(planterError,HttpStatus.BAD_REQUEST);
 		}
+		
+		@ExceptionHandler(CartException.class)
+		public ResponseEntity<MyCustomError> cartExceptionHandler(CartException ee,WebRequest wrq){
+			
+			System.out.println("inside CartException method...");
+			MyCustomError cartError = new MyCustomError();
+			cartError.setLdt(LocalDateTime.now());
+			cartError.setMessage(ee.getMessage());
+			cartError.setDetails(wrq.getDescription(false));
+			
+			return new ResponseEntity<>(cartError,HttpStatus.BAD_REQUEST);
+		}
+		
 		
 		@ExceptionHandler(MethodArgumentNotValidException.class)
 		public ResponseEntity<MyCustomError> validatorHandler(MethodArgumentNotValidException ie) {
@@ -64,7 +77,7 @@ import org.springframework.web.context.request.WebRequest;
 		@ExceptionHandler(Exception.class)
 		public ResponseEntity<MyCustomError> otherExceptionHandler(Exception e,WebRequest wrq){
 			
-			System.out.println("inside Exception method...");
+			System.out.println("inside  Exception method...");
 			MyCustomError allOtherExceptions = new MyCustomError();
 			allOtherExceptions.setLdt(LocalDateTime.now());
 			allOtherExceptions.setMessage(e.getMessage());
