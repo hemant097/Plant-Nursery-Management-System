@@ -1,10 +1,17 @@
 package com.masai.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,13 +24,22 @@ import lombok.NoArgsConstructor;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Integer customerId;
-	private String customerName;
-	private String customerEmail;
-	private String userName;
-	private String password;
-	@Embedded
-	private Address address;
+	
+	@NotNull(message = "Name field should not be empty")
+	@Pattern(regexp = "(?i)(^[a-z]+)[a-z .,-]((?! .,-)$){1,25}$",message = "please enter a valid name")
+	private String name;
+	
+	@NotNull(message = "Mobile number field should not be empty")
+	@Pattern(regexp = "[7896]{1}[0-9]{9}",message = "Input a valid mobile number")
+	private String mobileNumber;
+	
+	@NotNull(message="Email is mandatory")
+	@Pattern(regexp = "^(.+)@(\\S+)$",message = "Input a valid email address")
+	private String email;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Address> addresslist= new ArrayList<>();
 	
 }
