@@ -12,5 +12,6 @@ import com.masai.models.Customer;
 @Repository
 public interface CustomerDAO extends JpaRepository<Customer, Integer>{
 
-	public List<Customer> findByMobileNumber(String mobileNumber);
+	public Customer findByMobileNumber(String mobileNumber);
+	
 }
