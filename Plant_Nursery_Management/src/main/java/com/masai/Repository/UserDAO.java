@@ -8,5 +8,7 @@ import com.masai.models.User;
 public interface UserDAO extends JpaRepository<User, Integer>{
 
 	public User findByMobile(String mobile);
+	
+	public User findByUserId(Integer userId);
 
 }
