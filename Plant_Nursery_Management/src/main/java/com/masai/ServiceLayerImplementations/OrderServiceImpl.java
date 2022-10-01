@@ -71,7 +71,7 @@ public class OrderServiceImpl implements OrderService{
 			return orders;
 		}
 		else {
-			throw new OrderException("No student found");
+			throw new OrderException("No order found");
 		}
 		
 	}

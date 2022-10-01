@@ -28,13 +28,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer addCustomer(Customer customer) throws UserAlreadyExists,CustomerException {
 		
-	Customer existingCustomer=customerDao.findByMobileNumber(customer.getMobileNumber());
+	Customer existingCustomer=customerDao.findByMobile(customer.getMobile());
 	
 	if(existingCustomer!=null) {
 		throw new UserAlreadyExists("customer already registered with this mobile number");
 	}
 	
-	String mobileNum = customer.getMobileNumber();
+	String mobileNum = customer.getMobile();
 	User user=  userDao.findByMobile(mobileNum);
 	
 	if(user!=null) return customerDao.save(customer);
@@ -66,23 +66,25 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer deleteCustomer(Customer tenant,String Key) throws CustomerException {
+	public Customer deleteCustomer(Integer customerId,String Key) throws CustomerException {
 		
 		UserSession loggedInUser=userSessionDao.findByUniqueId(Key);
 		if(loggedInUser==null) {
 			throw new CustomerException("please provide a valid Key to delete a customer");
 			
 		}
-		else if(tenant.getCustomerId()==loggedInUser.getUserId()){
-			customerDao.delete(tenant);
-			return tenant;
+		else if(customerId==loggedInUser.getUserId()){
+			Optional<Customer> tenant = customerDao.findById(customerId);
 			
-		}
+			customerDao.delete(tenant.get());
+			return tenant.get();
+			}
+		
 		else {
 			throw new CustomerException("Invalid details..please login first");
 		}
 		
-
+		
 	}
 
 	@Override
@@ -91,7 +93,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Optional<UserSession> loggedInUser=userSessionDao.findById(customerId);
 		if(loggedInUser.isPresent()) {
 			User user = userDao.findByUserId(loggedInUser.get().getUserId());
-			Customer customer = customerDao.findByMobileNumber(user.getMobile());
+			Customer customer = customerDao.findByMobile(user.getMobile());
 			
 			return customer;
 		}
@@ -114,17 +116,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer validateCustomer(String userName, String password) throws CustomerException {
-//		Optional<UserSession> loggedInUser=userSessionDao.findby
-//		if(loggedInUser.isPresent()) {
-//			User user = userDao.findByUserId(loggedInUser.get().getUserId());
-//			Customer customer = customerDao.findByMobileNumber(user.getMobile());
-//			
-//			return customer;
-//		}
 //		
-//		else {
-//			throw new CustomerException("Invalid details..please login first");
-//		}
 		
 		return null;
 	}

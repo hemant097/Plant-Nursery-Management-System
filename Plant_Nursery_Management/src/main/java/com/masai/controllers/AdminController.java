@@ -179,7 +179,7 @@ public class AdminController {
 	}
 	
 	
-	/*----------------------------------------PLANTERS--------------------------------------*/
+	/*--------------------------------------------PLANTERS----------------------------------------*/
 
 	@PostMapping("/planter/add")
 	public ResponseEntity<Planter> saveNewPlanter(@RequestBody Planter planter)
@@ -247,6 +247,7 @@ public class AdminController {
 		return new ResponseEntity<List<Planter>>(allPlanters, HttpStatus.OK);
 	}
 	
+/*----------------------------------------------------------------------------------------*/
 
 
 

@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.Exceptions.CustomerException;
 import com.masai.Exceptions.UserAlreadyExists;
 import com.masai.ServiceLayer.CustomerService;
 import com.masai.ServiceLayer.UserLoginLogoutService;
 import com.masai.ServiceLayer.UserService;
+import com.masai.models.Customer;
 import com.masai.models.User;
 import com.masai.models.UserDTO;
 
@@ -24,33 +27,15 @@ import com.masai.models.UserDTO;
 public class CustomerController {
 	@Autowired
 	private CustomerService cService;
-	@Autowired
-	private UserLoginLogoutService userLoginLogOutService;
+	
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private UserLoginLogoutService loginLogOutService;
 
-//	@PostMapping("/")
-//	public ResponseEntity<Customer> saveCustomerHandler(@Valid @RequestBody Customer customer)
-//			throws CustomerException, UserAlreadyExists {
-//
-//		Customer savedCustomer = cService.addCustomer(customer);
-//
-//		return new ResponseEntity<Customer>(savedCustomer, HttpStatus.CREATED);
-//	}
-//
-//	@PutMapping("/")
-//	public ResponseEntity<Customer> updateCustomerHandler
-//			(@RequestBody Customer customer,@RequestParam(required = false) 
-//				String key) throws CustomerException{
-//		
-//		Customer updatedCustomer=cService.updateCustomer(customer,key);
-//		
-//		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.OK);		
-//		
-//	}
-	@PostMapping("/")
+	
+	@PostMapping("/adduser")
 	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) throws UserAlreadyExists{
 		
 		User savedUser = userService.saveUser(user);
@@ -86,6 +71,26 @@ public class CustomerController {
 		return new ResponseEntity<String>(loggedOutUser,HttpStatus.OK);
 	}
 	
-	
+	@PostMapping("/addcustomer")
+	public ResponseEntity<Customer> saveCustomerHandler(@Valid @RequestBody Customer customer)
+			throws CustomerException, UserAlreadyExists {
+
+		Customer savedCustomer = cService.addCustomer(customer);
+
+		return new ResponseEntity<Customer>(savedCustomer, HttpStatus.CREATED);
+	}
+
+	@PutMapping("/updatecustomer")
+	public ResponseEntity<Customer> updateCustomerHandler
+			(@RequestBody Customer customer,@RequestParam(required = false) 
+				String key) throws CustomerException{
+		
+		Customer updatedCustomer=cService.updateCustomer(customer,key);
+		
+		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.OK);		
+		
+	}
+//	@DeleteMapping("")
+//	public ResponseEntity<Customer>
 	
 }
