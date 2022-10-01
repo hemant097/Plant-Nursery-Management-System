@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.Exceptions.CustomerException;
+import com.masai.Exceptions.UserAlreadyExists;
 import com.masai.Repository.CustomerDAO;
 import com.masai.Repository.UserDAO;
 import com.masai.Repository.UserSessionDAO;
@@ -18,23 +19,33 @@ import com.masai.models.UserSession;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	@Autowired
-	 private  CustomerDAO customerDao;
+	private  CustomerDAO customerDao;
 	@Autowired
 	private UserSessionDAO userSessionDao;
 	@Autowired
 	private UserDAO userDao;
 
 	@Override
-	public Customer addCustomer(Customer customer) throws CustomerException {
+	public Customer addCustomer(Customer customer) throws UserAlreadyExists,CustomerException {
 		
 	Customer existingCustomer=customerDao.findByMobileNumber(customer.getMobileNumber());
 	
 	if(existingCustomer!=null) {
-		throw new CustomerException("customer already registered");
+		throw new UserAlreadyExists("customer already registered with this mobile number");
 	}
-		return customerDao.save(customer);
+	
+	String mobileNum = customer.getMobileNumber();
+	User user=  userDao.findByMobile(mobileNum);
+	
+	if(user!=null) return customerDao.save(customer);
+	
+	else throw new CustomerException("You have to login first");
 	}
-
+	
+	
+	
+	
+	
 	@Override
 	public Customer updateCustomer(Customer tenant,String Key) throws CustomerException {
 		

@@ -1,5 +1,5 @@
 package com.masai.models;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
@@ -13,10 +13,11 @@ import lombok.ToString;
 @ToString
 public class UserDTO {
 	
-	@NotNull(message = "mobile number field should not be empty!")
-	@Pattern(regexp = "[789]{1}[0-9]{9}",message ="Please enter 10 digit mobile ")
+	@NotBlank(message = "mobile number field should not be empty!")
+	@Pattern(regexp = "[789]{1}[0-9]{9}",message ="Please enter a valid 10 "
+			+ "digit mobile number starting with 7/8/9 ")
 	private String mobile;
 	
-	@NotNull(message = "Password field should not be empty")
-	private Integer password;
+	@NotBlank(message = "Password field should not be empty")
+	private String password;
 }

@@ -4,9 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,13 +20,14 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer userId;
 	
-	@NotNull(message = "Name field should not be empty")
+	@NotBlank(message = "Name field should not be empty")
 	private String name;
 	
-	@NotNull(message = "Please Enter your Mobile Number")
-	@Pattern(regexp = "[7896]{1}[0-9]{9}",message = "Input a valid mobile number")
+	@NotBlank(message = "Please Enter your Mobile Number")
+	@Pattern(regexp = "[789]{1}[0-9]{9}",message = " Please enter a"
+			+ " valid 10 digit mobile number starting with 7/8/9 ")
 	private String mobile;
 	
-	@NotNull(message = "Password is a mandatory field")
+	@NotBlank(message = "Password is a mandatory field")
 	private String password;              
 }

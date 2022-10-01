@@ -11,7 +11,7 @@ public interface PlantService {
 
 	public Plant updatePlant(Plant plant) throws PlantException;
 
-	public Plant deletePlant(Plant plant) throws PlantException;
+	public Plant deletePlant(Integer plantId) throws PlantException;
 
 	public Plant viewPlant(Integer plantId) throws PlantException;
 
