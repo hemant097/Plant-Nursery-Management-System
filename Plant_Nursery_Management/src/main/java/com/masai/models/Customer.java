@@ -27,7 +27,7 @@ public class Customer {
 	
 	@NotNull(message = "Mobile number field should not be empty")
 	@Pattern(regexp = "[7896]{1}[0-9]{9}",message = "Input a valid mobile number")
-	private String mobileNumber;
+	private String mobile;
 	
 	@NotNull(message="Email is mandatory")
 	@Pattern(regexp = "^(.+)@(\\S+)$",message = "Input a valid email address")

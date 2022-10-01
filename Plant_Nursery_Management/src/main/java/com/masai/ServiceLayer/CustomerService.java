@@ -12,7 +12,7 @@ public interface CustomerService {
 
 	public Customer updateCustomer(Customer tenant,String Key) throws CustomerException;
 
-	public Customer deleteCustomer(Customer tenant,String Key) throws CustomerException;
+	public Customer deleteCustomer(Integer customerId,String Key) throws CustomerException;
 
 	public Customer viewCustomer(int customerId) throws CustomerException;
 
