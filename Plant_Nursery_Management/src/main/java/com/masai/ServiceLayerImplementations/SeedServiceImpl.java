@@ -47,14 +47,14 @@ public class SeedServiceImpl implements SeedService{
 	
 	
 	@Override
-	public Seed deleteSeed(Seed seed) throws SeedException {
-		Integer seedId = seed.getSeedId();
+	public Seed deleteSeed(Integer seedId) throws SeedException {
 		
 		Optional<Seed> found = seedDAO.findById(seedId);		
 		
 		if(found.isPresent()) {
-			seedDAO.delete(seed);
-			return seed;
+			Seed seedfound = found.get();
+			seedDAO.delete(seedfound);
+			return seedfound;
 		}
 		else
 			throw  new SeedException("Cannot Delete this seed, No such Seed present ");

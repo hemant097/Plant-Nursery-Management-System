@@ -1,7 +1,7 @@
 package com.masai.models;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,17 +21,17 @@ public class Planter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer planterId;
-	private float planterHeight;
-	private float planterCapacity;
+	private Double planterHeight;
+	private Double planterCapacity;
 	private Integer drainageHoles;
-	private Integer planterColor;
+	private String planterColor;
 	private String planterShape;
 	private Integer planterStock;
 	private Integer planterCost;
 	
 	@OneToMany(cascade= CascadeType.ALL)
-	Set<Seed> Seeds = new HashSet<>();
+	List<Seed> Seeds = new ArrayList<>();
 	
 	@OneToMany(cascade= CascadeType.ALL)
-	Set<Plant> Plants = new HashSet<>();
+	List<Plant> Plants = new ArrayList<>();
 }

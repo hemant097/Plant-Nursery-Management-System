@@ -42,14 +42,15 @@ public class PlanterServiceImpl implements PlanterService {
 	}
 
 	@Override
-	public Planter deletePlanter(Planter planter) throws PlanterException {
+	public Planter deletePlanter(Integer planterId) throws PlanterException {
 		
 		
-		Integer planterId = planter.getPlanterId();
+	
 		
 		Optional<Planter> found = planterDAO.findById(planterId);		
 		
 		if(found.isPresent()) {
+			Planter planter=found.get();
 			planterDAO.delete(planter);
 			return planter;
 		}
@@ -60,7 +61,7 @@ public class PlanterServiceImpl implements PlanterService {
 	
 
 	@Override
-	public Planter viewPlanter(int planterId) throws PlanterException {
+	public Planter viewPlanter(Integer planterId) throws PlanterException {
 		
 		Optional<Planter> found = planterDAO.findById( planterId);		
 		

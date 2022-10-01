@@ -43,18 +43,19 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant deletePlant(Plant plant) throws PlantException {
+	public Plant deletePlant(Integer plantId) throws PlantException {
 		
-		Integer plantId = plant.getPlantId();
+		
 		
 		Optional<Plant> found = plantDAO.findById(plantId);		
 		
 		if(found.isPresent()) {
+			Plant plant = found.get();
 			plantDAO.delete(plant);
 			return plant;
 		}
 		else
-			throw  new PlantException("Cannot Delete "+plant.getCommonName()+" No such Plant present ");
+			throw  new PlantException("Cannot Delete No such Plant present ");
 		
 	}
 

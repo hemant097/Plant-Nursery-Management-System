@@ -3,11 +3,12 @@ package com.masai.ServiceLayer;
 import java.util.List;
 
 import com.masai.Exceptions.CustomerException;
+import com.masai.Exceptions.UserAlreadyExists;
 import com.masai.models.Customer;
 
 public interface CustomerService {
 
-	public Customer addCustomer(Customer customer) throws CustomerException;
+	public Customer addCustomer(Customer customer) throws UserAlreadyExists,CustomerException;
 
 	public Customer updateCustomer(Customer tenant,String Key) throws CustomerException;
 

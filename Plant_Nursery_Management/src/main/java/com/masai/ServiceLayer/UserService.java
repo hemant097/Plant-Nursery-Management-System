@@ -5,7 +5,7 @@ import com.masai.models.User;
 
 public interface UserService {
 
-	public User saveUer(User user) throws UserAlreadyExists;
+	public User saveUser(User user) throws UserAlreadyExists;
 	
 	public User updateUserCredential(User user,String key) throws UserAlreadyExists;
 	
