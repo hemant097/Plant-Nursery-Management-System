@@ -1,6 +1,5 @@
 package com.masai.models;
 
-import java.util.ArrayList;
 
 import java.util.List;
 
@@ -11,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,12 +26,12 @@ public class Cart {
 	private Integer cartId;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private CustomerOrder items;
+	private Customer customer;
 
 //	private Double cartTotal;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private Planter planters;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Planter> planters;
 
 //	private Integer noOfItems;
 

@@ -32,7 +32,7 @@ public class UserLoginLogoutServiceImpl implements UserLoginLogoutService {
 		User user = uDao.findByMobile(userDTO.getMobile());
 
 		if(user==null) {
-			return "Enter a valid mobile number";
+			return "no user is registered with this mobile number";
 		}
 		Optional<UserSession> isUserPresent = usersessionDao.findById(user.getUserId());
 		
