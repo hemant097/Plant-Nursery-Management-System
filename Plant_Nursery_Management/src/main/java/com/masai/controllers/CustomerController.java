@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.Exceptions.CustomerException;
+import com.masai.Exceptions.OrderException;
 import com.masai.Exceptions.UserAlreadyExists;
 import com.masai.ServiceLayer.CustomerService;
+import com.masai.ServiceLayer.OrderService;
 import com.masai.ServiceLayer.UserLoginLogoutService;
 import com.masai.ServiceLayer.UserService;
 import com.masai.models.Customer;
+import com.masai.models.CustomerOrder;
 import com.masai.models.User;
 import com.masai.models.UserDTO;
 
@@ -33,6 +37,9 @@ public class CustomerController {
 	
 	@Autowired
 	private UserLoginLogoutService loginLogOutService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	
 	@PostMapping("/adduser")
@@ -82,7 +89,7 @@ public class CustomerController {
 
 	@PutMapping("/updatecustomer")
 	public ResponseEntity<Customer> updateCustomerHandler
-			(@RequestBody Customer customer,@RequestParam(required = false) 
+			(@Valid @RequestBody Customer customer,@RequestParam(required = false) 
 				String key) throws CustomerException{
 		
 		Customer updatedCustomer=cService.updateCustomer(customer,key);
@@ -90,7 +97,43 @@ public class CustomerController {
 		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.OK);		
 		
 	}
-//	@DeleteMapping("")
-//	public ResponseEntity<Customer>
+
 	
+	//--------------------------------------------ORDER____________________------
+	
+	@PostMapping("/order/add")
+	public ResponseEntity<CustomerOrder> addOrder
+			(@Valid @RequestBody CustomerOrder cOrder) throws OrderException{
+		
+		CustomerOrder newOrder  = orderService.addOrder(cOrder);
+		
+		return new ResponseEntity<CustomerOrder>(newOrder,HttpStatus.OK);	
+	}
+	
+	@PutMapping("/order/update")
+	public ResponseEntity<CustomerOrder> updateOrder
+			(@Valid @RequestBody CustomerOrder cOrder) throws OrderException{
+		
+		CustomerOrder updatedOrder  = orderService.updateOrder(cOrder);
+		
+		return new ResponseEntity<CustomerOrder>(updatedOrder,HttpStatus.OK);	
+	}
+	
+	@DeleteMapping("/order/delete/{oID}")
+	public ResponseEntity<CustomerOrder> deleteOrder
+			(@PathVariable Integer oID) throws OrderException{
+		
+		CustomerOrder deletedOrder  = orderService.deleteOrderById(oID);
+		
+		return new ResponseEntity<CustomerOrder>(deletedOrder,HttpStatus.OK);	
+	}
+	
+	@DeleteMapping("/order/view/{oID}")
+	public ResponseEntity<CustomerOrder> viewOrder
+			(@PathVariable Integer oID) throws OrderException{
+		
+		CustomerOrder viewOrder  = orderService.deleteOrderById(oID);
+		
+		return new ResponseEntity<CustomerOrder>(viewOrder,HttpStatus.OK);	
+	}
 }
