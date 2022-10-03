@@ -1,21 +1,21 @@
 
 #Online Nursery Plant Management
-Backend of online Management where customer can buy plants, seeds.
+Backend of online Management where customer can buy planters, plants and seeds.
 
 
 ![ERDiagram](https://github.com/hemant097/berserk-camera-3158/blob/main/ER%20diagram.png?raw=true)
 
 
 . After running this program in spring boot we have to hit this url to see all the API's in swagger 
-http://localhost:8880/swagger-ui/
+http://localhost:8585/swagger-ui/
 
-ONLINE NURSERY PLANT and SEED MANAGMENT | Online plant and seed management where you can customer can buy and planter can sell thier plants and seeds. 
+ONLINE NURSERY PLANT and SEED MANAGMENT | Online plant and seed management where you can customer can buy and planter can sell their plants and seeds. 
 Service Layers, Data Access Layers to generate different end points. Features:
 
 - **Services Offered**
 1. User Login and Signup.
-2. Addmin can add planter with plants and seeds.
-3. Customer can buy plants and seeds.
+2. Admin can add planter with plants and seeds.
+3. Customer can buy planters with plant and seed.
 4. Customer can see all orders history.
 
 - **Backend**
