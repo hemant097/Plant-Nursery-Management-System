@@ -1,5 +1,5 @@
 
-# Nursery Plant Management
+#Online Nursery Plant Management
 Backend of online Management where customer can buy plants, seeds.
 
 
@@ -28,7 +28,7 @@ Service Layers, Data Access Layers to generate different end points. Features:
 <table>
 <tr>
 <td>
-<!-- We were a team of 4 from the Masai Web-15 batch. We worked on creating REST API and writing business logic for an E-commerce application. Our project performs fundamental operations of an e-commerce website, where our customer's data is validated, mapped, processed with business logic & persisted in the database. -->
+<!-- We were a team of 4 from the Masai Web-17 batch. We worked on creating REST API and writing business logic for an E-commerce application. Our project performs fundamental operations of an e-commerce website, where our customer's data is validated, mapped, processed with business logic & persisted in the database. -->
   </td>
 </tr>
 
@@ -44,5 +44,17 @@ Service Layers, Data Access Layers to generate different end points. Features:
 - **Hibernate**
 - **MySQL**
 
+
+## Contributors
+👤 Hemant Sharma
+
+
+👤 Priyobrato Banik
+
+
+👤 Rajnish Kumar
+
+
+👤 Dilip kumar
 
 
