@@ -13,7 +13,7 @@ public interface CartService {
 	public Cart addToCart( Integer CustomerId,Integer productId,Cart ourCart )
 			throws CustomerException,CartException;
 	
-	public List<Planter> getAllItem (Integer cartId)throws CartException;
+	public List<Planter> getAllItem ()throws CartException;
 	
 	public String deleteFromCart(Integer cartId,Integer planterId)
 			throws PlanterException,CartException;

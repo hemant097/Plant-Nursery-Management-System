@@ -11,8 +11,6 @@ import com.masai.models.Cart;
 public interface CartDAO extends JpaRepository<Cart, Integer> {
 	
 	@Modifying
-    @Query(
-            value = "truncate table Cart",
-            nativeQuery = true)
+    @Query(value = "truncate table Cart", nativeQuery = true)
 	public void deleteAll();
 }

@@ -42,7 +42,7 @@ public class CustomerController {
 	private OrderService orderService;
 
 	
-	@PostMapping("/adduser")
+	@PostMapping("/signUp")
 	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) throws UserAlreadyExists{
 		
 		User savedUser = userService.saveUser(user);
@@ -50,7 +50,7 @@ public class CustomerController {
 		return new ResponseEntity<User>(savedUser,HttpStatus.OK);
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/logIn")
 	public ResponseEntity<String> userLogin(@Valid @RequestBody UserDTO userDTO) throws UserAlreadyExists{
 		
 		String savedUser = loginLogOutService.userLogin(userDTO);
@@ -69,7 +69,7 @@ public class CustomerController {
 		return new ResponseEntity<User>(updatedUser,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/logout")
+	@DeleteMapping("/logOut")
 	public ResponseEntity<String> userLogOut(@RequestParam(required = false) 
 	String key) throws UserAlreadyExists{
 		
@@ -101,39 +101,39 @@ public class CustomerController {
 	
 	//--------------------------------------------ORDER____________________------
 	
-	@PostMapping("/order/add")
-	public ResponseEntity<CustomerOrder> addOrder
-			(@Valid @RequestBody CustomerOrder cOrder) throws OrderException{
-		
-		CustomerOrder newOrder  = orderService.addOrder(cOrder);
-		
-		return new ResponseEntity<CustomerOrder>(newOrder,HttpStatus.OK);	
-	}
-	
-	@PutMapping("/order/update")
-	public ResponseEntity<CustomerOrder> updateOrder
-			(@Valid @RequestBody CustomerOrder cOrder) throws OrderException{
-		
-		CustomerOrder updatedOrder  = orderService.updateOrder(cOrder);
-		
-		return new ResponseEntity<CustomerOrder>(updatedOrder,HttpStatus.OK);	
-	}
-	
-	@DeleteMapping("/order/delete/{oID}")
-	public ResponseEntity<CustomerOrder> deleteOrder
-			(@PathVariable Integer oID) throws OrderException{
-		
-		CustomerOrder deletedOrder  = orderService.deleteOrderById(oID);
-		
-		return new ResponseEntity<CustomerOrder>(deletedOrder,HttpStatus.OK);	
-	}
-	
-	@DeleteMapping("/order/view/{oID}")
-	public ResponseEntity<CustomerOrder> viewOrder
-			(@PathVariable Integer oID) throws OrderException{
-		
-		CustomerOrder viewOrder  = orderService.deleteOrderById(oID);
-		
-		return new ResponseEntity<CustomerOrder>(viewOrder,HttpStatus.OK);	
-	}
+//	@PostMapping("/order/add")
+//	public ResponseEntity<CustomerOrder> addOrder
+//			(@Valid @RequestBody CustomerOrder cOrder) throws OrderException{
+//		
+//		CustomerOrder newOrder  = orderService.addOrder(cOrder);
+//		
+//		return new ResponseEntity<CustomerOrder>(newOrder,HttpStatus.OK);	
+//	}
+//	
+//	@PutMapping("/order/update")
+//	public ResponseEntity<CustomerOrder> updateOrder
+//			(@Valid @RequestBody CustomerOrder cOrder) throws OrderException{
+//		
+//		CustomerOrder updatedOrder  = orderService.updateOrder(cOrder);
+//		
+//		return new ResponseEntity<CustomerOrder>(updatedOrder,HttpStatus.OK);	
+//	}
+//	
+//	@DeleteMapping("/order/delete/{oID}")
+//	public ResponseEntity<CustomerOrder> deleteOrder
+//			(@PathVariable Integer oID) throws OrderException{
+//		
+//		CustomerOrder deletedOrder  = orderService.deleteOrderById(oID);
+//		
+//		return new ResponseEntity<CustomerOrder>(deletedOrder,HttpStatus.OK);	
+//	}
+//	
+//	@DeleteMapping("/order/view/{oID}")
+//	public ResponseEntity<CustomerOrder> viewOrder
+//			(@PathVariable Integer oID) throws OrderException{
+//		
+//		CustomerOrder viewOrder  = orderService.deleteOrderById(oID);
+//		
+//		return new ResponseEntity<CustomerOrder>(viewOrder,HttpStatus.OK);	
+//	}
 }

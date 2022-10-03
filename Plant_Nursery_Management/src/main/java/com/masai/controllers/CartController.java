@@ -48,25 +48,24 @@ public class CartController {
 	private CartService cartService;
 	
 	
-	@PostMapping("/add/{customerID}/{productID}")
+	@PostMapping("/add/{customerID}/{planterID}")
 	public ResponseEntity<Cart> saveNewProductInCart(@RequestBody Cart cart
 			,@PathVariable Integer customerID
-			,@PathVariable Integer productID)
+			,@PathVariable Integer planterID)
 			throws CustomerException,CartException{
 	
-		Cart addedToCart = cartService.addToCart(customerID, productID, cart);
+		Cart addedToCart = cartService.addToCart(customerID, planterID, cart);
 		
 		
 	return new ResponseEntity<Cart>(addedToCart,HttpStatus.OK);
 			
 }
 	
-	@GetMapping("/{cartID}")
-	public ResponseEntity<List<Planter>> saveNewProductInCart(
-	@PathVariable Integer cartID)
+	@GetMapping("/all")
+	public ResponseEntity<List<Planter>> seeAllItemsInCart()
 			throws CustomerException,CartException{
 	
-		List<Planter> planters = cartService.getAllItem(cartID);
+		List<Planter> planters = cartService.getAllItem();
 		
 		
 	return new ResponseEntity<List<Planter>>(planters,HttpStatus.OK);
@@ -84,7 +83,7 @@ public class CartController {
 			
 }
 	
-	@DeleteMapping("/all")
+	@DeleteMapping("/removeAll")
 	public ResponseEntity<String> deleteAll(){
 	
 	String output = cartService.emptyCart();		

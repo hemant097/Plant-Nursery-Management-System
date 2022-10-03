@@ -1,5 +1,6 @@
 package com.masai.ServiceLayerImplementations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,9 @@ public class CartServiceImpl implements CartService {
 			
 			Planter planter = optPlanter.get();
 			
-			ourCart.getPlanters().add(planter);
+			ourCart.setPlanter(planter);
 			ourCart.setCustomer(customer);
+			ourCart.setPlanterId(planterId);
 			
 			return cartDao.save(ourCart);
 			
@@ -69,35 +71,41 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<Planter> getAllItem(Integer cartID)
+	public List<Planter> getAllItem()
 			throws CartException{
 		
-		Optional<Cart> cartData = cartDao.findById(cartID);
+		List<Cart> cartData = cartDao.findAll();
 		
 		if(cartData.isEmpty())
 			throw new CartException("Cart is empty");
 		
 		else {
-			List<Planter> planters = cartData.get().getPlanters();
+			
+			List<Planter> planters = new ArrayList<>();
+			
+			for(Cart cart:cartData) {
+				planters.add(cart.getPlanter());
+			}
 			return planters;
 		}
 		
 	}
 
 	@Override
-	public String deleteFromCart(Integer cartId, Integer planterId) throws PlanterException, CartException {
+	public String deleteFromCart(Integer cartItemId, Integer planterId) throws PlanterException, CartException {
 		
-		Optional<Cart> opt = cartDao.findById(cartId);
+		Optional<Cart> opt = cartDao.findById(cartItemId);
 		
 		if (opt.isPresent()) {
 			Cart cart = opt.get();
-			List<Planter> planters = cart.getPlanters();
+			Planter p = cart.getPlanter();
 			
-			for(Planter p:planters) {
-				if(p.getPlanterId()==planterId) {
-					planterDAO.delete(p);
-				}
+		
+			if(p.getPlanterId()==planterId) {
+				cartDao.delete(cart);
+					
 			}
+			
 			
 			return "CartProduct is deleted from Cart";
 			
