@@ -46,15 +46,15 @@ Service Layers, Data Access Layers to generate different end points. Features:
 
 
 ## Contributors
-👤 Hemant Sharma
+👤 [Hemant Sharma](github.com/hemant097)
 
 
-👤 Priyobrato Banik
+👤 [Priyobrato Banik](github.com/priyobratobanik)
 
 
-👤 Rajnish Kumar
+👤 [Rajnish Kumar](github.com/Rajnish1234567)
 
 
-👤 Dilip kumar
+👤 [Dilip kumar](github.com/itsmedudes)
 
 
